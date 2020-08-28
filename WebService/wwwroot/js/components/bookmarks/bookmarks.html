@@ -1,0 +1,28 @@
+﻿<br />
+<div id="bookmarks">
+    <h2>Bookmarks</h2>
+    <hr />
+
+    <p>Results found: <b><span data-bind="text: total"></span></b></p>
+    <p>Pages in total: <b><span data-bind="text: pages"></span></b></p>
+
+    <ul class="list-group" data-bind="foreach:cPage">
+        <li class="list-group-item">
+            <a href="#" data-bind="attr:{href:'/#/post/'+(parentID?parentID:postID)}"><span data-bind="text:title"></span></a>
+        </li>
+    </ul>
+</div>
+
+<nav class="paginate">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" data-bind="click:changePagePrev,css:currentPagenr() == 1 ?'disabled':''">
+            <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="#" data-bind="text:currentPagenr">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item" data-bind="click:changePageNext,css:currentPagenr() === cPage.pages ?'disabled':''">
+            <span class="page-link">Next</span>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,66 @@
+﻿<div class="row post-box" data-bind="style: { background: answerID() === id() ? '#ecf9ec' : 'white'}, attr: { id: id() }">   
+        
+        <!-- answer score -->
+        <div class="col-sm-1 score">
+            <div class="center vote-count" data-bind="text: score"></div>
+            <br />
+            <!-- answer bookmark -->
+            <div data-bind="if: bookedmarked">
+                <i  data-bind="click:removeBookmark" class="fas fa-star"></i>
+            </div>
+            <div data-bind="ifnot: bookedmarked">
+                <i data-bind="click:addBookmark" class="far fa-star"></i>
+            </div>
+        </div>
+
+        <!-- answer body -->
+        <div class="col-sm-11">
+            <div data-bind="if: answerID() === id()">
+                <div class="alert alert-success">
+                    <strong>Accepted answer</strong>
+                </div>
+            </div>
+
+        <div class="col-sm-11">
+            <div data-bind="html:body"></div>
+        </div>
+    </div>
+ </div>
+
+    <!-- comments for answer -->
+    <div class="row">
+            <div class="col-sm-12">
+                    <table class="comment" data-bind="foreach: comments">
+                        <tr style="border-top:1px solid lightgrey;">
+                            <td>
+                                <span data-bind="text:score"></span>&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                <span data-bind="html:text"> </span>
+                            </td>
+                            <td>
+                                <span data-bind="text:userName"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text:creationDate"></span>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+    </div>
+
+<style>
+    .vote-count {
+        font-size: 2rem;
+    } 
+    table {
+        max-width: 80%;
+        float: right;
+    }
+    .profitWarning {
+        background: red;
+    }
+    .alert-success {
+        text-align: center;
+    }
+</style>

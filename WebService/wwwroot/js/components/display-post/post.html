@@ -1,0 +1,116 @@
+﻿<br />
+<div class="postView">
+    <div class="row">
+            <div class="col-md-12">
+                <div class="question">
+
+                    <!-- notes -->
+                    <div class="note">
+                        <div data-bind="visible: showAddNote()">
+                            <div data-bind="if: countNotes() <= 0">
+                                <button type="button" class="btn btn-dark" data-bind="click: addNote">Add a note to this question</button><br /><br />
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write here..." data-bind="value: noteText"></textarea>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-bind="foreach: notes">
+                        <div class="card note-card">
+                            <div class="card-body">
+                                <span data-bind="text: text"></span>
+                                <button type="button" class="btn btn-danger" data-bind="click: $parent.removeNote">Delete note</button>
+                            </div>
+                        </div>
+                    </div><br />
+
+                    <!-- question score -->
+                    <div class="question-title">
+                        <h2 data-bind="text: qTitle"></h2>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-1 score">
+                            <span class="qScore" data-bind="text: qScore"></span><br /><br />
+
+                            <!-- question bookmark -->
+                            <div data-bind="if: qBookmarked">
+                                <i data-bind="click:removeBookmark" class="fas fa-star"></i>
+                            </div>
+                            <div data-bind="ifnot: qBookmarked">
+                                <i data-bind="click:addBookmark" class="far fa-star"></i>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-11">
+                            <div data-bind="html: qBody"></div>
+
+                            <!-- question -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div data-bind="foreach: qTags">
+                                        <span class="badge badge-secondary" data-bind="text: tag"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            Asked by <b><span data-bind="text: qUserName"></span></b> on
+                                            <span class="card-text" data-bind="text: qCreationDate"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- comments -->
+                            <br />
+                            <hr />
+                            <div data-bind="foreach: qComments">
+                                <p data-bind="html: text"></p>
+                                <span data-bind="style: { color: score > 10 ? 'orange' : 'grey' }, text: score"></span>&nbsp;
+                                <span data-bind="text: userName"></span>
+                                <hr />
+                            </div>
+
+                            <!-- answers -->
+                            <h3><span data-bind="text: countAnswers"></span>&nbsp;<span>Answers</span></h3>
+                            <div data-bind="foreach:answerData">
+                                <div data-bind="component: { name: 'post-answer', params:{body:body,comments:comments,notes:notes,score:score,userName:userName, answerID: $parent.acceptedAnswer, id:id, bookmarked:bookmarked } }"></div>
+                                <hr />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+</div>
+
+<style>
+    pre {
+        background: #f2f2f2;
+        padding: 2%;
+        overflow-y: scroll;
+        max-height: 400px;
+    }
+    .qScore {
+        font-size: 2rem;
+    }
+    .fas.fa-star {
+        color: #ffdb4d;
+        
+    }
+    .fas, .far {
+        font-size: 1.5rem;
+    }
+    i:hover {
+        cursor: pointer;
+    }
+    .note-card button {
+        float: right;
+    }
+</style>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DbModel\old\**" />
+    <EmbeddedResource Remove="DbModel\old\**" />
+    <None Remove="DbModel\old\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="PostRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DAL.cd" />
+    <None Remove="DbModel\indexes.sql" />
+    <None Remove="DbModel\searchProcedures.sql" />
+    <None Remove="DbModel\tfidf.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataService\DataService.csproj" />
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbModel\" />
+  </ItemGroup>
+
+</Project>
